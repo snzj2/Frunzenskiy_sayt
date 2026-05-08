@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мероприятия — ПМК «Фрунзенский»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <span class="brand-mark brand-mark-letter" aria-hidden="true">Ф</span>
+        <div>
+          <p class="brand-title">ПМК «Фрунзенский»</p>
+          <p class="brand-subtitle">Подростково-молодёжный центр Фрунзенского района Санкт-Петербурга</p>
+        </div>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+
+
+      <nav class="nav" id="main-nav" aria-label="Основная навигация">
+        <a class="" href="index.html">Главная</a>
+        <a class="" href="about.html">О центре</a>
+        <a class="active" href="events.html">Мероприятия</a>
+        <a class="" href="news.html">Новости</a>
+        <a class="" href="clubs.html">Клубы и студии</a>
+        <a class="" href="documents.html">Документы</a>
+        <a class="" href="dobrocenter.html">Доброцентр</a>
+        <a class="" href="anticorruption.html">Противодействие коррупции</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Поиск">
+          <img src="assets/icons/search.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="access-btn access-icon-btn" type="button" data-accessibility-toggle aria-pressed="false" aria-label="Версия для слабовидящих"><img src="assets/icons/glasses.svg" alt="" aria-hidden="true"></button>
+        <button class="icon-btn" type="button" aria-label="Профиль">
+          <img src="assets/icons/user.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <p class="breadcrumbs"><a href="index.html">Главная</a> / Мероприятия</p>
+      <section class="section">
+        <div class="section-head"><h1 class="section-title">Мероприятия</h1></div>
+        <div class="filters">
+          <input data-search-control placeholder="Поиск мероприятия">
+          <select data-filter-control="format"><option value="all">Формат</option><option value="очно">Очно</option><option value="онлайн">Онлайн</option></select>
+          <select data-filter-control="age"><option value="all">Возраст</option><option value="12-14">12–14</option><option value="15-18">15–18</option></select>
+          <select data-filter-control="theme"><option value="all">Направление</option><option value="спорт">Спорт</option><option value="творчество">Творчество</option><option value="волонтёрство">Волонтёрство</option></select>
+        </div>
+        <div class="cards" data-list-root>
+          <article class="card" data-item data-format="очно" data-age="15-18" data-theme="спорт" data-search="турнир футбол спорт"><div class="card-media photo-placeholder" role="img" aria-label="Турнир по мини-футболу">Турнир по мини-футболу</div><h3>Турнир по мини-футболу</h3><p class="meta">25 апреля · 13:00 · ПМК «Вектор»</p><p>Командные игры для подростков 15–18 лет.</p><a class="pill-link" href="#">Подробнее</a></article>
+          <article class="card" data-item data-format="очно" data-age="12-14" data-theme="творчество" data-search="мастер-класс графика творчество"><div class="card-media photo-placeholder" role="img" aria-label="Мастер-класс по графике">Мастер-класс по графике</div><h3>Мастер-класс по графике</h3><p class="meta">27 апреля · 16:00 · ПМК «Искра»</p><p>Практика цифрового рисунка и комикса.</p><a class="pill-link" href="#">Подробнее</a></article>
+          <article class="card" data-item data-format="онлайн" data-age="15-18" data-theme="волонтёрство" data-search="волонтёрский интенсив онлайн"><div class="card-media photo-placeholder" role="img" aria-label="Волонтёрский интенсив">Волонтёрский интенсив</div><h3>Волонтёрский интенсив</h3><p class="meta">30 апреля · 18:30 · Онлайн</p><p>Как запустить социальный проект в своём районе.</p><a class="pill-link" href="#">Подробнее</a></article>
+        </div>
+        <p class="hidden" data-empty-state>События по заданным фильтрам не найдены.</p>
+      </section>
+
+      <footer class="footer">
+        <section>
+          <h3>ПМК «Фрунзенский»</h3>
+          <p>Современный молодёжный центр Фрунзенского района: досуг, спорт, творчество, социальные инициативы и волонтёрство.</p>
+          <p>© 2026 Подростково-молодёжный центр Фрунзенского района Санкт-Петербурга.</p>
+        </section>
+        <section>
+          <h2>Контакты</h2>
+          <p>г. Санкт-Петербург, Фрунзенский район</p>
+          <p>+7 (812) 123-45-67</p>
+          <p>info@centerfrunze.ru</p>
+          <p>Пн–Пт: 10:00–19:00</p>
+          <p><a href="contacts.html">Все контакты и площадки</a></p>
+        </section>
+        <section>
+          <h2>Обратная связь</h2>
+          <form class="form-grid" data-feedback-form>
+            <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
+            <input class="form-field" type="email" name="email" placeholder="Email" required>
+            <textarea class="form-field" name="message" placeholder="Ваш вопрос" required></textarea>
+            <button class="btn btn-primary" type="submit">Отправить</button>
+            <p data-form-message aria-live="polite"></p>
+          </form>
+        </section>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

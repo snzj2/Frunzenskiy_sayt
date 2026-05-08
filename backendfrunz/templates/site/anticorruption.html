@@ -1,0 +1,7 @@
+{% extends "site/base.html" %}
+{% block title %}Противодействие коррупции — ПМК «Фрунзенский»{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / Противодействие коррупции</p>
+<section class="section"><h1 class="section-title">Противодействие коррупции</h1><p>Раздел для официальных материалов, нормативных актов, памяток и контактов для обращений.</p></section>
+<section class="section"><div class="cards"><article class="card"><h3>Нормативные документы</h3><p class="meta">Положения и регламенты</p><p>Материалы можно добавить в раздел «Документы» через админ-панель.</p></article><article class="card"><h3>Обратная связь</h3><p class="meta">Для обращений граждан</p><p>Используйте форму контактов для направления сообщения администрации центра.</p><a class="pill-link" href="{% url 'pages:contacts' %}">Написать обращение</a></article></div></section>
+{% endblock %}
