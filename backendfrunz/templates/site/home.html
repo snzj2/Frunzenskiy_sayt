@@ -1,0 +1,106 @@
+{% extends "site/base.html" %}
+{% block title %}ПМК «Фрунзенский» — пространство возможностей{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <span class="badge">Молодёжь · развитие · творчество · спорт · волонтёрство</span>
+    <h1>{% if home_settings %}{{ home_settings.title }}{% else %}Современный молодёжный центр Фрунзенского района{% endif %}</h1>
+    <p>{% if home_settings and home_settings.subtitle %}{{ home_settings.subtitle }}{% else %}Клубы, события, добрые дела и творческие проекты — в одном живом и удобном пространстве для подростков, молодёжи и родителей.{% endif %}</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{% if home_settings and home_settings.primary_button_url %}{{ home_settings.primary_button_url }}{% else %}{% url 'pages:clubs_list' %}{% endif %}">{% if home_settings and home_settings.primary_button_text %}{{ home_settings.primary_button_text }}{% else %}Найти клуб{% endif %}</a>
+      <a class="btn btn-ghost" href="{% if home_settings and home_settings.secondary_button_url %}{{ home_settings.secondary_button_url }}{% else %}{% url 'pages:events_list' %}{% endif %}">{% if home_settings and home_settings.secondary_button_text %}{{ home_settings.secondary_button_text }}{% else %}Ближайшие мероприятия{% endif %}</a>
+    </div>
+  </div>
+  <div class="hero-photo" role="img" aria-label="Фото молодёжи на городском мероприятии">
+    {% if home_settings and home_settings.banner_image %}<img src="{{ home_settings.banner_image.url }}" alt="{{ home_settings.title }}">{% else %}Фото-заглушка: сюда добавить реальные фотографии мероприятий центра{% endif %}
+  </div>
+</section>
+
+<section class="grid-2">
+  <article class="section">
+    <div class="section-head"><h2 class="section-title">Ближайшие мероприятия</h2><a class="pill-link" href="{% url 'pages:events_list' %}">Все события</a></div>
+    <div class="cards">
+      {% for event in main_events %}
+        <article class="card">
+          {% include "site/includes/card_image.html" with image=event.preview_image alt=event.title fallback=event.title %}
+          <h3>{{ event.title }}{% if event.location %} <a class="event-location-link" href="{% url 'pages:clubs_list' %}">{{ event.location.title }}</a>{% endif %}</h3>
+          <p class="meta">{{ event.start_datetime|date:"d E" }} · {{ event.start_datetime|time:"H:i" }} · {{ event.get_format_display }}</p>
+          <p>{{ event.short_description|default:event.description|truncatechars:140 }}</p>
+          <a class="pill-link" href="{{ event.get_absolute_url }}">Подробнее</a>
+        </article>
+      {% empty %}
+        <article class="card"><div class="card-media photo-placeholder">Афиша</div><h3>Мероприятия появятся здесь</h3><p class="meta">После добавления в админ-панели</p><p>Создайте опубликованное мероприятие, и оно автоматически появится на главной.</p></article>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="section">
+    <div class="section-head"><h2 class="section-title">Календарь</h2><a class="pill-link" href="{% url 'pages:events_list' %}">Открыть афишу</a></div>
+    <div class="calendar">
+      <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+      <div>7</div><div>8</div><div class="is-event">9</div><div>10</div><div>11</div><div class="is-event">12</div><div>13</div>
+      <div>14</div><div>15</div><div>16</div><div>17</div><div class="is-event">18</div><div>19</div><div>20</div>
+    </div>
+  </article>
+</section>
+
+<section class="section" id="clubs-preview">
+  <div class="section-head"><h2 class="section-title">Клубы и студии</h2><a class="pill-link" href="{% url 'pages:clubs_list' %}">Каталог клубов</a></div>
+  <div class="cards">
+    {% for club in main_clubs %}
+      <article class="card">
+        <h3>{{ club.title }}</h3>
+        <p class="meta">{% if club.age_min or club.age_max %}{{ club.age_min|default:"" }}–{{ club.age_max|default:"" }} лет · {% endif %}{% if club.direction %}{{ club.direction.title }} · {% endif %}{{ club.get_format_display }}</p>
+        <p>{{ club.short_description|default:club.description|truncatechars:120 }}</p>
+        <span class="tag {% if club.status == 'active' %}status-open{% elif club.status == 'temporarily_unavailable' %}status-soon{% else %}status-full{% endif %}">{{ club.get_status_display }}</span>
+        <div class="card-actions"><a class="pill-link" href="{{ club.get_absolute_url }}">Подробнее</a></div>
+      </article>
+    {% empty %}
+      <article class="card"><h3>Клубы появятся здесь</h3><p class="meta">Добавьте клубы через админку</p><span class="tag status-soon">Ожидается наполнение</span></article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section" style="background:linear-gradient(135deg,#3648ff40,#53d4ff40); border-color:#78a3ff;">
+  <div class="section-head"><h2 class="section-title">Доброцентр</h2><a class="pill-link" href="{% url 'pages:dobrocenter' %}">Перейти в раздел</a></div>
+  <p>Отдельное направление центра для волонтёрских инициатив: акции, наставничество, помощь городу и соседям, социальные проекты молодёжи.</p>
+</section>
+
+<section class="grid-2">
+  <article class="section">
+    <div class="section-head"><h2 class="section-title">Новости</h2><a class="pill-link" href="{% url 'pages:news_list' %}">Все новости</a></div>
+    <div class="cards">
+      {% for item in main_news %}
+        <article class="card"><h3>{{ item.title }}</h3><p class="meta">{{ item.published_at|date:"d E Y" }}</p><p>{{ item.short_description|default:item.content|truncatechars:140 }}</p><a class="pill-link" href="{{ item.get_absolute_url }}">Читать</a></article>
+      {% empty %}
+        <article class="card"><h3>Новости появятся здесь</h3><p class="meta">После публикации в админке</p><p>Опубликованные новости автоматически выводятся на главной.</p></article>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="section interests-wheel" data-interests-wheel>
+    <div class="section-head"><h2 class="section-title">Колесо интересов</h2></div>
+    <p>Не знаешь, с чего начать? Крути колесо — и мы подскажем, что посмотреть на сайте.</p>
+    <p class="meta">Один запуск — и ты увидишь подходящее направление, клубы и активности.</p>
+    <div class="wheel-game">
+      <div class="wheel-wrap"><div class="wheel-pointer" aria-hidden="true"></div><div class="wheel-disc" data-wheel-disc role="img" aria-label="Колесо интересов с направлениями"><span class="wheel-label wheel-label-1">Спорт</span><span class="wheel-label wheel-label-2">Медиа и digital</span><span class="wheel-label wheel-label-3">Творчество</span><span class="wheel-label wheel-label-4">Волонтёрство</span><span class="wheel-label wheel-label-5">Интеллект</span><span class="wheel-label wheel-label-6">Мероприятия</span><div class="wheel-center">ПМК</div></div></div>
+      <div class="wheel-controls"><button class="btn btn-primary" type="button" data-wheel-spin>Крутить колесо</button><button class="btn btn-ghost hidden" type="button" data-wheel-reset>Попробовать ещё</button></div>
+      <article class="wheel-result hidden" data-wheel-result aria-live="polite"><h3 data-wheel-title></h3><p data-wheel-description></p><ul data-wheel-list></ul></article>
+    </div>
+  </article>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2 class="section-title">Карта площадок и клубов</h2></div>
+  <div class="map-wrap">
+    <div class="map-canvas" aria-label="Схема площадок Фрунзенского района"><span class="pin" style="left:20%;top:40%"></span><span class="pin"></span><span class="pin"></span><span class="pin"></span></div>
+    <div>
+      <div class="filters"><select data-filter-control="location"><option value="all">Все локации</option>{% for location in locations %}<option value="{{ location.title|lower }}">{{ location.title }}</option>{% endfor %}</select></div>
+      <ul data-list-root>
+        {% for location in locations %}<li data-item data-location="{{ location.title|lower }}">{{ location.title }}, {{ location.address }}</li>{% empty %}<li data-item>Площадки появятся после добавления в админ-панели.</li>{% endfor %}
+      </ul>
+      <p data-empty-state class="hidden">По выбранному фильтру площадки не найдены.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

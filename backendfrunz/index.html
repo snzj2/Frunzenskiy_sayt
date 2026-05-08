@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ПМК «Фрунзенский» — пространство возможностей</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <span class="brand-mark brand-mark-letter" aria-hidden="true">Ф</span>
+        <div>
+          <p class="brand-title">ПМК «Фрунзенский»</p>
+          <p class="brand-subtitle">Подростково-молодёжный центр Фрунзенского района Санкт-Петербурга</p>
+        </div>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+
+
+      <nav class="nav" id="main-nav" aria-label="Основная навигация">
+        <a class="active" href="index.html">Главная</a>
+        <a class="" href="about.html">О центре</a>
+        <a class="" href="events.html">Мероприятия</a>
+        <a class="" href="news.html">Новости</a>
+        <a class="" href="clubs.html">Клубы и студии</a>
+        <a class="" href="documents.html">Документы</a>
+        <a class="" href="dobrocenter.html">Доброцентр</a>
+        <a class="" href="anticorruption.html">Противодействие коррупции</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Поиск">
+          <img src="assets/icons/search.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="access-btn access-icon-btn" type="button" data-accessibility-toggle aria-pressed="false" aria-label="Версия для слабовидящих"><img src="assets/icons/glasses.svg" alt="" aria-hidden="true"></button>
+        <button class="icon-btn" type="button" aria-label="Профиль">
+          <img src="assets/icons/user.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div>
+          <span class="badge">Молодёжь · развитие · творчество · спорт · волонтёрство</span>
+          <h1>Современный молодёжный центр Фрунзенского района</h1>
+          <p>Клубы, события, добрые дела и творческие проекты — в одном живом и удобном пространстве для подростков, молодёжи и родителей.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="clubs.html">Найти клуб</a>
+            <a class="btn btn-ghost" href="events.html">Ближайшие мероприятия</a>
+          </div>
+        </div>
+        <div class="hero-photo" role="img" aria-label="Фото молодёжи на городском мероприятии">
+          Фото-заглушка: сюда добавить реальные фотографии мероприятий центра
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <article class="section">
+          <div class="section-head"><h2 class="section-title">Ближайшие мероприятия</h2><a class="pill-link" href="events.html">Все события</a></div>
+          <div class="cards">
+            <article class="card"><div class="card-media photo-placeholder" role="img" aria-label="Афиша фестиваля уличных культур">Афиша фестиваля уличных культур</div><h3>Фестиваль уличных культур <a class="event-location-link" href="clubs.html">Парк Интернационалистов</a></h3><p class="meta">12 апреля · 17:00 · Очно</p><p>Музыка, танцы, граффити-зона и открытые мастер-классы.</p></article>
+            <article class="card"><div class="card-media photo-placeholder" role="img" aria-label="Афиша встречи волонтёров">Афиша встречи волонтёров</div><h3>Встреча волонтёрского актива <a class="event-location-link" href="clubs.html">Дом молодёжи «Купчино»</a></h3><p class="meta">18 апреля · 16:30 · Очно</p><p>Презентация социальных проектов и набор в команды.</p></article>
+          </div>
+        </article>
+
+        <article class="section">
+          <div class="section-head"><h2 class="section-title">Календарь</h2><a class="pill-link" href="events.html">Открыть афишу</a></div>
+          <div class="calendar">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+            <div>7</div><div>8</div><div class="is-event">9</div><div>10</div><div>11</div><div class="is-event">12</div><div>13</div>
+            <div>14</div><div>15</div><div>16</div><div>17</div><div class="is-event">18</div><div>19</div><div>20</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="clubs-preview">
+        <div class="section-head"><h2 class="section-title">Клубы и студии</h2><a class="pill-link" href="clubs.html">Каталог клубов</a></div>
+        <div class="cards">
+          <article class="card"><h3>Медиа-лаборатория «Кадр»</h3><p class="meta">14–18 лет · Медиа · Смешанный формат</p><span class="tag status-open">Идёт набор</span></article>
+          <article class="card"><h3>Театральная студия «Сцена+»</h3><p class="meta">12–17 лет · Творчество · Очный формат</p><span class="tag status-soon">Скоро открытие</span></article>
+          <article class="card"><h3>Спортивный клуб «Вектор»</h3><p class="meta">13–18 лет · Спорт · Очный формат</p><span class="tag status-full">Мест нет</span></article>
+        </div>
+      </section>
+
+      <section class="section" style="background:linear-gradient(135deg,#3648ff40,#53d4ff40); border-color:#78a3ff;">
+        <div class="section-head"><h2 class="section-title">Доброцентр</h2><a class="pill-link" href="dobrocenter.html">Перейти в раздел</a></div>
+        <p>Отдельное направление центра для волонтёрских инициатив: акции, наставничество, помощь городу и соседям, социальные проекты молодёжи.</p>
+      </section>
+
+      <section class="grid-2">
+        <article class="section">
+          <div class="section-head"><h2 class="section-title">Новости</h2><a class="pill-link" href="news.html">Все новости</a></div>
+          <div class="cards">
+            <article class="card"><h3>Открыт набор в летние творческие смены</h3><p class="meta">08 апреля 2026</p><p>Стартовала запись по направлениям: танец, дизайн, медиа и музыка.</p></article>
+            <article class="card"><h3>Новая карта площадок района</h3><p class="meta">05 апреля 2026</p><p>Добавлены новые адреса клубов и расписание по филиалам.</p></article>
+          </div>
+        </article>
+
+        <article class="section interests-wheel" data-interests-wheel>
+          <div class="section-head">
+            <h2 class="section-title">Колесо интересов</h2>
+          </div>
+          <p>Не знаешь, с чего начать? Крути колесо — и мы подскажем, что посмотреть на сайте.</p>
+          <p class="meta">Один запуск — и ты увидишь подходящее направление, клубы и активности.</p>
+
+          <div class="wheel-game">
+            <div class="wheel-wrap">
+              <div class="wheel-pointer" aria-hidden="true"></div>
+              <div class="wheel-disc" data-wheel-disc role="img" aria-label="Колесо интересов с направлениями">
+                <span class="wheel-label wheel-label-1">Спорт</span>
+                <span class="wheel-label wheel-label-2">Медиа и digital</span>
+                <span class="wheel-label wheel-label-3">Творчество</span>
+                <span class="wheel-label wheel-label-4">Волонтёрство</span>
+                <span class="wheel-label wheel-label-5">Интеллект</span>
+                <span class="wheel-label wheel-label-6">Мероприятия</span>
+                <div class="wheel-center">ПМК</div>
+              </div>
+            </div>
+
+            <div class="wheel-controls">
+              <button class="btn btn-primary" type="button" data-wheel-spin>Крутить колесо</button>
+              <button class="btn btn-ghost hidden" type="button" data-wheel-reset>Попробовать ещё</button>
+            </div>
+
+            <article class="wheel-result hidden" data-wheel-result aria-live="polite">
+              <h3 data-wheel-title></h3>
+              <p data-wheel-description></p>
+              <ul data-wheel-list></ul>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title">Карта площадок и клубов</h2></div>
+        <div class="map-wrap">
+          <div class="map-canvas" aria-label="Схема площадок Фрунзенского района">
+            <span class="pin" style="left:20%;top:40%"></span>
+            <span class="pin"></span>
+            <span class="pin"></span>
+            <span class="pin"></span>
+          </div>
+          <div>
+            <div class="filters"><select data-filter-control="location"><option value="all">Все локации</option><option value="купчино">Купчино</option><option value="софийская">Софийская</option><option value="бухарестская">Бухарестская</option></select></div>
+            <ul data-list-root>
+              <li data-item data-location="купчино">Дом молодёжи «Купчино», ул. Будапештская, 19</li>
+              <li data-item data-location="софийская">ПМК «Факел», Софийская ул., 38к2</li>
+              <li data-item data-location="бухарестская">ПМК «Искра», Бухарестская ул., 91</li>
+            </ul>
+            <p data-empty-state class="hidden">По выбранному фильтру площадки не найдены.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <section>
+          <h3>ПМК «Фрунзенский»</h3>
+          <p>Современный молодёжный центр Фрунзенского района: досуг, спорт, творчество, социальные инициативы и волонтёрство.</p>
+          <p>© 2026 Подростково-молодёжный центр Фрунзенского района Санкт-Петербурга.</p>
+        </section>
+        <section>
+          <h2>Контакты</h2>
+          <p>г. Санкт-Петербург, Фрунзенский район</p>
+          <p>+7 (812) 123-45-67</p>
+          <p>info@centerfrunze.ru</p>
+          <p>Пн–Пт: 10:00–19:00</p>
+          <p><a href="contacts.html">Все контакты и площадки</a></p>
+        </section>
+        <section>
+          <h2>Обратная связь</h2>
+          <form class="form-grid" data-feedback-form>
+            <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
+            <input class="form-field" type="email" name="email" placeholder="Email" required>
+            <textarea class="form-field" name="message" placeholder="Ваш вопрос" required></textarea>
+            <button class="btn btn-primary" type="submit">Отправить</button>
+            <p data-form-message aria-live="polite"></p>
+          </form>
+        </section>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

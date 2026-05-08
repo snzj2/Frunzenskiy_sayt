@@ -1,0 +1,7 @@
+{% if page_obj.has_other_pages %}
+<nav class="pagination" aria-label="Навигация по страницам">
+  {% if page_obj.has_previous %}<a class="pill-link" href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if selected_direction %}&direction={{ selected_direction }}{% endif %}{% if selected_format %}&format={{ selected_format }}{% endif %}">Назад</a>{% endif %}
+  <span class="pill-link current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}<a class="pill-link" href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if selected_direction %}&direction={{ selected_direction }}{% endif %}{% if selected_format %}&format={{ selected_format }}{% endif %}">Вперёд</a>{% endif %}
+</nav>
+{% endif %}
