@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: frunz_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: frunz_db
+      POSTGRES_USER: frunz_user
+      POSTGRES_PASSWORD: frunz_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - frunz_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U frunz_user -d frunz_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  frunz_postgres_data:
