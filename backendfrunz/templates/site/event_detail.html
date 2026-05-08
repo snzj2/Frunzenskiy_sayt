@@ -1,0 +1,13 @@
+{% extends "site/base.html" %}
+{% block title %}{{ event.title }} — Мероприятия{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / <a href="{% url 'pages:events_list' %}">Мероприятия</a> / {{ event.title }}</p>
+<section class="hero">
+  <div><span class="badge">{{ event.get_format_display }}{% if event.direction %} · {{ event.direction.title }}{% endif %}</span><h1>{{ event.title }}</h1><p>{{ event.short_description|default:event.description|truncatechars:220 }}</p></div>
+  <div class="hero-photo" role="img" aria-label="{{ event.title }}">{% if event.preview_image %}<img src="{{ event.preview_image.url }}" alt="{{ event.title }}">{% else %}Фото-заглушка: {{ event.title }}{% endif %}</div>
+</section>
+<section class="detail-grid">
+  <article class="section"><h2>Описание мероприятия</h2><p class="content-text">{{ event.description }}</p></article>
+  <aside class="section detail-aside"><h2>Запись</h2><p class="meta">{{ event.start_datetime|date:"d E Y" }} · {{ event.start_datetime|time:"H:i" }}</p>{% if event.location %}<p>{{ event.location.title }}<br>{{ event.location.address }}</p>{% endif %}{% if event.organizer %}<p>Организатор: {{ event.organizer }}</p>{% endif %}{% if event.is_registration_available %}{% include "site/includes/application_form.html" %}{% else %}<p>Запись сейчас недоступна.</p>{% endif %}</aside>
+</section>
+{% endblock %}

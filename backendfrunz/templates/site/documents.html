@@ -1,0 +1,17 @@
+{% extends "site/base.html" %}
+{% block title %}Документы — ПМК «Фрунзенский»{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / Документы</p>
+<section class="section">
+  <div class="section-head"><h1 class="section-title">Документы</h1></div>
+  <div class="filters"><input data-search-control placeholder="Поиск документа"><select data-filter-control="category"><option value="all">Категория</option><option value="положение">Положения</option><option value="отчет">Отчёты</option><option value="регламент">Регламенты</option></select></div>
+  <div class="cards" data-list-root>
+    {% for doc in documents %}
+      <article class="card" data-item data-category="{% if doc.category %}{{ doc.category.title|lower }}{% endif %}" data-search="{{ doc.title }} {{ doc.description }}"><h3>{{ doc.title }}</h3><p class="meta">{% if doc.category %}{{ doc.category.title }} · {% endif %}{{ doc.published_at|date:"d E Y" }}</p><p>{{ doc.description|default:"Документ доступен для скачивания." }}</p><a class="pill-link file-link" href="{{ doc.file.url }}" target="_blank" rel="noreferrer">Скачать файл</a></article>
+    {% empty %}
+      <article class="card"><h3>Документы появятся здесь</h3><p class="meta">Добавьте опубликованные документы через админ-панель.</p></article>
+    {% endfor %}
+  </div>
+  <p class="hidden" data-empty-state>Документы по заданным фильтрам не найдены.</p>
+</section>
+{% endblock %}

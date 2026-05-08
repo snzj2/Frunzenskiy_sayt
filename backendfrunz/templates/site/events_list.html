@@ -1,0 +1,29 @@
+{% extends "site/base.html" %}
+{% block title %}Мероприятия — ПМК «Фрунзенский»{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / Мероприятия</p>
+<section class="section">
+  <div class="section-head"><h1 class="section-title">Мероприятия</h1></div>
+  <form class="filters" method="get">
+    <input data-search-control name="q" value="{{ q }}" placeholder="Поиск мероприятия">
+    <select name="format" data-filter-control="format"><option value="">Формат</option>{% for value,label in formats %}<option value="{{ value }}" {% if selected_format == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <select name="direction" data-filter-control="theme"><option value="">Направление</option>{% for direction in directions %}<option value="{{ direction.slug }}" {% if selected_direction == direction.slug %}selected{% endif %}>{{ direction.title }}</option>{% endfor %}</select>
+    <button class="btn btn-primary" type="submit">Найти</button>
+  </form>
+  <div class="cards" data-list-root>
+    {% for event in page_obj %}
+      <article class="card" data-item data-format="{{ event.format }} {{ event.get_format_display|lower }}" data-theme="{% if event.direction %}{{ event.direction.slug }} {{ event.direction.title|lower }}{% endif %}" data-search="{{ event.title }} {{ event.short_description }} {{ event.description }}">
+        {% include "site/includes/card_image.html" with image=event.preview_image alt=event.title fallback=event.title %}
+        <h3>{{ event.title }}</h3>
+        <p class="meta">{{ event.start_datetime|date:"d E" }} · {{ event.start_datetime|time:"H:i" }} · {% if event.location %}{{ event.location.title }}{% else %}Место уточняется{% endif %}</p>
+        <p>{{ event.short_description|default:event.description|truncatechars:150 }}</p>
+        <a class="pill-link" href="{{ event.get_absolute_url }}">Подробнее</a>
+      </article>
+    {% empty %}
+      <article class="card"><h3>Мероприятия не найдены</h3><p class="meta">Измените фильтры или добавьте опубликованные события через админку.</p></article>
+    {% endfor %}
+  </div>
+  <p class="hidden" data-empty-state>События по заданным фильтрам не найдены.</p>
+  {% include "site/includes/pagination.html" %}
+</section>
+{% endblock %}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Доброцентр — ПМК «Фрунзенский»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <span class="brand-mark brand-mark-letter" aria-hidden="true">Ф</span>
+        <div>
+          <p class="brand-title">ПМК «Фрунзенский»</p>
+          <p class="brand-subtitle">Подростково-молодёжный центр Фрунзенского района Санкт-Петербурга</p>
+        </div>
+      </a>
+
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+
+
+      <nav class="nav" id="main-nav" aria-label="Основная навигация">
+        <a class="" href="index.html">Главная</a>
+        <a class="" href="about.html">О центре</a>
+        <a class="" href="events.html">Мероприятия</a>
+        <a class="" href="news.html">Новости</a>
+        <a class="" href="clubs.html">Клубы и студии</a>
+        <a class="" href="documents.html">Документы</a>
+        <a class="active" href="dobrocenter.html">Доброцентр</a>
+        <a class="" href="anticorruption.html">Противодействие коррупции</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Поиск">
+          <img src="assets/icons/search.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="access-btn access-icon-btn" type="button" data-accessibility-toggle aria-pressed="false" aria-label="Версия для слабовидящих"><img src="assets/icons/glasses.svg" alt="" aria-hidden="true"></button>
+        <button class="icon-btn" type="button" aria-label="Профиль">
+          <img src="assets/icons/user.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <p class="breadcrumbs"><a href="index.html">Главная</a> / Доброцентр</p>
+      <section class="hero">
+        <div>
+          <span class="badge">Доброцентр</span>
+          <h1>Центр волонтёрских и социальных инициатив</h1>
+          <p>Самостоятельный раздел для тех, кто хочет участвовать в общественно полезных проектах, акциях и программах взаимопомощи.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://dobro.ru" target="_blank" rel="noreferrer">Перейти на Добро.РФ</a>
+            <a class="btn btn-ghost" href="contacts.html">Стать волонтёром</a>
+          </div>
+        </div>
+        <div class="hero-photo" role="img" aria-label="Фото волонтёрской акции">Фото-заглушка: добавить реальные фото волонтёрских акций центра</div>
+      </section>
+      <section class="section">
+        <div class="cards">
+          <article class="card"><h3>Акция «Тёплый двор»</h3><p class="meta">Суббота, 16:00</p><p>Благоустройство дворовых территорий и помощь жителям.</p></article>
+          <article class="card"><h3>Проект «Наставник рядом»</h3><p class="meta">Еженедельно</p><p>Поддержка подростков старшими волонтёрами и наставниками.</p></article>
+          <article class="card"><h3>Медиа-команда Доброцентра</h3><p class="meta">Смешанный формат</p><p>Освещение социальных инициатив в фото/видео формате.</p></article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <section>
+          <h3>ПМК «Фрунзенский»</h3>
+          <p>Современный молодёжный центр Фрунзенского района: досуг, спорт, творчество, социальные инициативы и волонтёрство.</p>
+          <p>© 2026 Подростково-молодёжный центр Фрунзенского района Санкт-Петербурга.</p>
+        </section>
+        <section>
+          <h2>Контакты</h2>
+          <p>г. Санкт-Петербург, Фрунзенский район</p>
+          <p>+7 (812) 123-45-67</p>
+          <p>info@centerfrunze.ru</p>
+          <p>Пн–Пт: 10:00–19:00</p>
+          <p><a href="contacts.html">Все контакты и площадки</a></p>
+        </section>
+        <section>
+          <h2>Обратная связь</h2>
+          <form class="form-grid" data-feedback-form>
+            <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
+            <input class="form-field" type="email" name="email" placeholder="Email" required>
+            <textarea class="form-field" name="message" placeholder="Ваш вопрос" required></textarea>
+            <button class="btn btn-primary" type="submit">Отправить</button>
+            <p data-form-message aria-live="polite"></p>
+          </form>
+        </section>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}Панель управления ПМК «Фрунзенский»{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin_custom/admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="frunz-admin-brand">
+  <span class="frunz-admin-logo">Ф</span>
+  <span>
+    <strong>ПМК «Фрунзенский»</strong>
+    <small>панель управления сайтом</small>
+  </span>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<a class="frunz-public-link" href="{% url 'pages:home' %}" target="_blank" rel="noreferrer">Открыть сайт</a>
+{% endblock %}

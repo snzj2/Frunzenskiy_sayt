@@ -1,0 +1,13 @@
+{% extends "site/base.html" %}
+{% block title %}Доброцентр — ПМК «Фрунзенский»{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / Доброцентр</p>
+<section class="hero">
+  <div><span class="badge">Доброцентр</span><h1>{% if page %}{{ page.title }}{% else %}Центр волонтёрских и социальных инициатив{% endif %}</h1><p>{% if page and page.short_description %}{{ page.short_description }}{% else %}Самостоятельный раздел для тех, кто хочет участвовать в общественно полезных проектах, акциях и программах взаимопомощи.{% endif %}</p><div class="hero-cta"><a class="btn btn-primary" href="https://dobro.ru" target="_blank" rel="noreferrer">Перейти на Добро.РФ</a><a class="btn btn-ghost" href="{% url 'pages:contacts' %}">Стать волонтёром</a></div></div>
+  <div class="hero-photo" role="img" aria-label="Фото волонтёрской акции">Фото-заглушка: добавить реальные фото волонтёрских акций центра</div>
+</section>
+<section class="section">
+  {% if page and page.content %}<p class="content-text">{{ page.content }}</p>{% endif %}
+  <div class="cards"><article class="card"><h3>Акция «Тёплый двор»</h3><p class="meta">Суббота, 16:00</p><p>Благоустройство дворовых территорий и помощь жителям.</p></article><article class="card"><h3>Проект «Наставник рядом»</h3><p class="meta">Еженедельно</p><p>Поддержка подростков старшими волонтёрами и наставниками.</p></article><article class="card"><h3>Медиа-команда Доброцентра</h3><p class="meta">Смешанный формат</p><p>Освещение социальных инициатив в фото/видео формате.</p></article></div>
+</section>
+{% endblock %}
