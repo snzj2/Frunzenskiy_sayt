@@ -1,0 +1,10 @@
+{% extends "site/base.html" %}
+{% block title %}{{ news.title }} — Новости{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / <a href="{% url 'pages:news_list' %}">Новости</a> / {{ news.title }}</p>
+<section class="hero">
+  <div><span class="badge">{{ news.published_at|date:"d E Y" }}{% if news.direction %} · {{ news.direction.title }}{% endif %}</span><h1>{{ news.title }}</h1><p>{{ news.short_description }}</p></div>
+  <div class="hero-photo" role="img" aria-label="{{ news.title }}">{% if news.preview_image %}<img src="{{ news.preview_image.url }}" alt="{{ news.title }}">{% else %}Фото-заглушка: {{ news.title }}{% endif %}</div>
+</section>
+<section class="section"><p class="content-text">{{ news.content }}</p>{% if news.images.all %}<div class="cards">{% for image in news.images.all %}<article class="card"><img class="card-media" src="{{ image.image.url }}" alt="{{ image.caption|default:news.title }}"><p class="meta">{{ image.caption }}</p></article>{% endfor %}</div>{% endif %}</section>
+{% endblock %}

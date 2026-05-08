@@ -1,0 +1,56 @@
+{% extends "site/base.html" %}
+{% block title %}Клубы и студии — ПМК «Фрунзенский»{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / Клубы и студии</p>
+<section class="section">
+  <div class="section-head"><h1 class="section-title">Клубы и студии</h1></div>
+  <form class="filters" method="get">
+    <input data-search-control name="q" value="{{ q }}" placeholder="Поиск клуба">
+    <select name="format" data-filter-control="format"><option value="">Формат</option>{% for value,label in formats %}<option value="{{ value }}" {% if selected_format == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <select name="direction" data-filter-control="direction"><option value="">Направление</option>{% for direction in directions %}<option value="{{ direction.slug }}" {% if selected_direction == direction.slug %}selected{% endif %}>{{ direction.title }}</option>{% endfor %}</select>
+    <button class="btn btn-primary" type="submit">Найти</button>
+  </form>
+  <div class="cards" data-list-root>
+    {% for club in page_obj %}
+      <article class="card" data-item data-direction="{% if club.direction %}{{ club.direction.slug }} {{ club.direction.title|lower }}{% endif %}" data-format="{{ club.format }} {{ club.get_format_display|lower }}" data-location="{% if club.location %}{{ club.location.title|lower }}{% endif %}" data-search="{{ club.title }} {{ club.short_description }} {{ club.description }} {{ club.leader_name }}">
+        {% include "site/includes/card_image.html" with image=club.preview_image alt=club.title fallback=club.title %}
+        <h3>{{ club.title }}</h3>
+        <p class="meta">{% if club.location %}{{ club.location.address }}{% else %}Адрес уточняется{% endif %}</p>
+        <p>{{ club.short_description|default:club.description|truncatechars:150 }}</p>
+        <span class="tag {% if club.status == 'active' %}status-open{% elif club.status == 'temporarily_unavailable' %}status-soon{% else %}status-full{% endif %}">{{ club.get_status_display }}</span>
+        <div class="card-actions"><a class="pill-link" href="{{ club.get_absolute_url }}">Подробнее</a>{% if club.location and club.location.yandex_map_url %}<a class="pill-link" href="{{ club.location.yandex_map_url }}" target="_blank" rel="noreferrer">На карте</a>{% endif %}</div>
+      </article>
+    {% empty %}
+      <article class="card"><h3>Клубы не найдены</h3><p class="meta">Измените фильтры или добавьте клубы через админку.</p></article>
+    {% endfor %}
+  </div>
+  <p class="hidden" data-empty-state>Клубы по заданным фильтрам не найдены.</p>
+  {% include "site/includes/pagination.html" %}
+</section>
+
+<section class="section studios-section" data-studios-root>
+  <div class="section-head"><h2 class="section-title">Студии и направления</h2></div>
+  <p class="studios-subtitle">Блок сохранён из исходной HTML-версии: у каждой студии есть краткое описание, а полная информация открывается по клику.</p>
+  <div class="studio-filter" data-studio-filter>
+    <div class="studio-filter-row">
+      <label><span>Направление:</span><select data-studio-direction><option value="all">Все</option><option value="Музыкальное">Музыкальное</option><option value="Вокальное">Вокальное</option><option value="Танцевальное">Танцевальное</option><option value="Театральное">Театральное</option><option value="Изобразительное">Изобразительное</option><option value="Патриотическое">Патриотическое</option><option value="Спортивное">Спортивное</option><option value="Другие направления">Другие направления</option></select></label>
+      <label><span>Стоимость:</span><select data-studio-cost><option value="бесплатно">Бесплатные занятия</option><option value="all">Любая</option></select></label>
+      <label><span>Возраст:</span><input type="number" min="6" max="35" data-studio-age placeholder="укажите возраст"></label>
+      <button class="btn btn-primary" type="button" data-studio-apply>Подобрать секцию</button>
+    </div>
+  </div>
+  <div class="studios-meta-line"><p data-studios-count>Показано 0 студий.</p><p>Нажмите на карточку, чтобы открыть подробную информацию о студии.</p></div>
+  <div class="studios-groups" data-studio-groups></div>
+  <p class="hidden" data-studio-empty>По выбранным параметрам студии не найдены.</p>
+</section>
+
+<div class="studio-modal hidden" data-studio-modal aria-hidden="true">
+  <div class="studio-modal-backdrop" data-studio-modal-close></div>
+  <article class="studio-modal-panel" role="dialog" aria-modal="true" aria-label="Информация о студии">
+    <button class="studio-modal-close" type="button" data-studio-modal-close aria-label="Закрыть">×</button>
+    <p class="studio-modal-direction" data-modal-direction></p><h2 data-modal-title></h2><p class="studio-modal-description" data-modal-description></p>
+    <div class="studio-modal-tags"><span data-modal-direction-tag></span><span data-modal-age></span><span data-modal-cost></span></div>
+    <div class="studio-modal-grid"><section><h3>О студии</h3><p data-modal-about></p></section><section><h3>Что будет на занятиях</h3><ul data-modal-program></ul></section><section><h3>Кому подойдёт</h3><p data-modal-audience></p></section><section><h3>Важно</h3><p data-modal-important></p></section></div>
+  </article>
+</div>
+{% endblock %}

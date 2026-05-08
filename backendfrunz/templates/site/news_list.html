@@ -1,0 +1,28 @@
+{% extends "site/base.html" %}
+{% block title %}Новости — ПМК «Фрунзенский»{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'pages:home' %}">Главная</a> / Новости</p>
+<section class="section">
+  <div class="section-head"><h1 class="section-title">Новости</h1></div>
+  <form class="filters" method="get">
+    <input data-search-control name="q" value="{{ q }}" placeholder="Поиск новости">
+    <select name="direction" data-filter-control="category"><option value="">Категория</option>{% for direction in directions %}<option value="{{ direction.slug }}" {% if selected_direction == direction.slug %}selected{% endif %}>{{ direction.title }}</option>{% endfor %}</select>
+    <button class="btn btn-primary" type="submit">Найти</button>
+  </form>
+  <div class="cards" data-list-root>
+    {% for item in page_obj %}
+      <article class="card" data-item data-category="{% if item.direction %}{{ item.direction.slug }} {{ item.direction.title|lower }}{% endif %}" data-search="{{ item.title }} {{ item.short_description }} {{ item.content }}">
+        {% include "site/includes/card_image.html" with image=item.preview_image alt=item.title fallback=item.title %}
+        <h3>{{ item.title }}</h3>
+        <p class="meta">{{ item.published_at|date:"d E Y" }}{% if item.direction %} · {{ item.direction.title }}{% endif %}</p>
+        <p>{{ item.short_description|default:item.content|truncatechars:150 }}</p>
+        <a class="pill-link" href="{{ item.get_absolute_url }}">Читать</a>
+      </article>
+    {% empty %}
+      <article class="card"><h3>Новости не найдены</h3><p class="meta">Добавьте опубликованные новости через админку.</p></article>
+    {% endfor %}
+  </div>
+  <p class="hidden" data-empty-state>Новости по заданным фильтрам не найдены.</p>
+  {% include "site/includes/pagination.html" %}
+</section>
+{% endblock %}
