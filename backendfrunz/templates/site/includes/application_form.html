@@ -1,0 +1,9 @@
+<form class="form-grid" method="post" data-server-form="true">
+  {% csrf_token %}
+  {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+  <input class="form-field{% if form.full_name.errors %} error{% endif %}" type="text" name="full_name" placeholder="ФИО" value="{{ form.full_name.value|default:'' }}" required>
+  <input class="form-field{% if form.phone.errors %} error{% endif %}" type="text" name="phone" placeholder="Телефон" value="{{ form.phone.value|default:'' }}">
+  <input class="form-field{% if form.email.errors %} error{% endif %}" type="email" name="email" placeholder="Email" value="{{ form.email.value|default:'' }}">
+  <textarea class="form-field{% if form.comment.errors %} error{% endif %}" name="comment" placeholder="Комментарий" rows="5">{{ form.comment.value|default:'' }}</textarea>
+  <button class="btn btn-primary" type="submit">Отправить заявку</button>
+</form>
