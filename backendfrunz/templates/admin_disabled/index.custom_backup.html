@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="frunz-dashboard-hero">
+  <div>
+    <span>Добро пожаловать</span>
+    <h1>Управление сайтом молодёжного центра</h1>
+    <p>Здесь сотрудники обновляют новости, мероприятия, клубы, документы, заявки и главную страницу. Разделы отображаются по правам текущего пользователя.</p>
+  </div>
+  <a class="frunz-hero-button" href="{% url 'pages:home' %}" target="_blank" rel="noreferrer">Посмотреть сайт</a>
+</div>
+
+<div class="frunz-dashboard-grid">
+  {% if app_list %}
+    {% for app in app_list %}
+      <section class="frunz-app-card app-{{ app.app_label }}">
+        <header><h2>{{ app.name }}</h2></header>
+        <div class="frunz-model-list">
+          {% for model in app.models %}
+            <div class="frunz-model-row">
+              <a class="frunz-model-name" href="{{ model.admin_url }}">{{ model.name }}</a>
+              <div class="frunz-actions">
+                {% if model.add_url %}<a href="{{ model.add_url }}">Добавить</a>{% endif %}
+                {% if model.admin_url %}<a href="{{ model.admin_url }}">Открыть</a>{% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  {% else %}
+    <p>{% translate "You don't have permission to view or edit anything." %}</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="content-related" class="frunz-related">
+  <h2>Быстрые действия</h2>
+  {% if perms.news.add_news %}<a href="{% url 'admin:news_news_add' %}">+ Новость</a>{% endif %}
+  {% if perms.events.add_event %}<a href="{% url 'admin:events_event_add' %}">+ Мероприятие</a>{% endif %}
+  {% if perms.clubs.add_club %}<a href="{% url 'admin:clubs_club_add' %}">+ Клуб / студия</a>{% endif %}
+  {% if perms.applications.view_application %}<a href="{% url 'admin:applications_application_changelist' %}">Заявки пользователей</a>{% endif %}
+  <a href="{% url 'pages:home' %}" target="_blank" rel="noreferrer">Публичный сайт</a>
+</div>
+{% endblock %}

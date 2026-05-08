@@ -1,0 +1,134 @@
+/* Light, stable tweaks on top of Jazzmin/AdminLTE. No fixed widths, no floating panels. */
+:root {
+  --frunz-primary: #2557d6;
+  --frunz-primary-dark: #173b9f;
+  --frunz-green: #00a88f;
+  --frunz-bg: #f5f7fb;
+}
+
+body {
+  background: var(--frunz-bg) !important;
+}
+
+.brand-link {
+  min-height: 64px;
+  border-bottom: 0 !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, .14);
+}
+
+.brand-link .brand-text {
+  font-weight: 800 !important;
+  letter-spacing: -.02em;
+}
+
+.main-sidebar {
+  box-shadow: 10px 0 32px rgba(15, 23, 42, .14) !important;
+}
+
+.nav-sidebar .nav-link {
+  border-radius: 12px !important;
+  margin: 3px 10px;
+}
+
+.nav-sidebar .nav-link.active {
+  background: linear-gradient(135deg, var(--frunz-primary), var(--frunz-primary-dark)) !important;
+  box-shadow: 0 8px 18px rgba(37, 87, 214, .28) !important;
+}
+
+.content-wrapper {
+  background: radial-gradient(circle at top left, rgba(37, 87, 214, .10), transparent 34%), var(--frunz-bg) !important;
+  overflow-x: hidden;
+}
+
+.content-header h1 {
+  font-weight: 850;
+  letter-spacing: -.035em;
+}
+
+.card,
+.module,
+.inline-group,
+#changelist,
+.submit-row {
+  border: 0 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, .08) !important;
+  overflow: hidden;
+}
+
+.card-header,
+.module h2,
+.module caption,
+.inline-group h2 {
+  border-bottom: 1px solid rgba(15, 23, 42, .08) !important;
+  background: #ffffff !important;
+  color: #172033 !important;
+  font-weight: 800 !important;
+}
+
+.btn,
+.button,
+input[type="submit"],
+input[type="button"],
+a.button {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+}
+
+.btn-primary,
+input[type="submit"].default,
+.submit-row input.default {
+  background: linear-gradient(135deg, var(--frunz-primary), var(--frunz-primary-dark)) !important;
+  border-color: var(--frunz-primary) !important;
+}
+
+.object-tools .btn,
+.object-tools a,
+.addlink {
+  border-radius: 999px !important;
+}
+
+.form-control,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+  border-radius: 12px !important;
+}
+
+.table thead th {
+  background: #f8fafc !important;
+  color: #334155 !important;
+  font-weight: 800 !important;
+}
+
+.table tbody tr:hover {
+  background: #f3f7ff !important;
+}
+
+.login-page {
+  background: radial-gradient(circle at top left, rgba(37, 87, 214, .24), transparent 38%), linear-gradient(135deg, #eef4ff, #f8fbff) !important;
+}
+
+.login-box .card {
+  border-radius: 24px !important;
+}
+
+body,
+.wrapper,
+.content-wrapper,
+.main-footer,
+.main-header {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .content-header h1 {
+    font-size: 1.6rem;
+  }
+}
